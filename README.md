@@ -1,1 +1,1 @@
-dit is een herhalingsoefening over responsiveness, webpack, js en git
+recap oef over js, responsiveness en webpack
