@@ -1,6 +1,8 @@
 :root {
-  --backgroundColor:  #F9D2CB;
-  --textColor: #463636;
-  --anotherColor: #bada55;
-  --margin: 2rem;
+  --backgroundColor: #f9d2cb;
+  --margin: 3rem;
+  --fontFamily: 'Roboto, sans serif';
+  --fontWeightFat: 500;
+  --fontWeightLight: 400;
+  --fontSizeSmall: 1.2rem;
 }
