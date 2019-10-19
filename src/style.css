@@ -2,6 +2,7 @@
 @import './css/vars.css';
 @import './css/header.css';
 @import './css/order.css';
+@import './css/nav.css';
 
 html {
   box-sizing: border-box;

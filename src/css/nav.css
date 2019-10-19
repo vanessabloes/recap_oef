@@ -1,0 +1,31 @@
+.navigation {
+  background-color: var(--colorNavigationBar);
+}
+
+.navigationlist {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navigationlist__item {
+  margin: 1.8rem 0;
+}
+
+.navigationlist__link {
+  color: var(--colorSvgNavigation-inactive);
+  text-decoration: none;
+  font-family: var(--fontFamilyHeader);
+  font-size: var(--fontSizeSmall);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &.navigationlist__link--active {
+    color: var(--colorSvgNavigation-active);
+  }
+
+  & p {
+    padding-top: 1rem;
+  }
+}
