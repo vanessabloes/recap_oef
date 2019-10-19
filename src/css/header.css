@@ -2,6 +2,8 @@ header {
   font-family: var(--fontFamilyHeader);
   background-color: var(--colorHeader);
   padding: var(--marginGeneral);
+  display: flex;
+  justify-content: center;
 }
 
 .h1-like {

@@ -6,6 +6,7 @@
   --colorSvgNavigation-active: #b7b7b7;
   --colorAddOrder: #a3f4dc;
   --colorBackgroundOrder: white;
+  --colorFontAmount: #9c9c9c;
 
   /* All margins */
   --marginGeneral: 3rem;
@@ -20,5 +21,11 @@
 
   /* All font-sizes */
   --fontSizeSmall: 1.2rem;
+  --fontSizeMedium: 1.6rem;
+  --fontSizeBig: 2.4rem;
   --fontSizeLarge: 2.6rem;
+
+  /* Border-radius */
+  --borderRadiusButton: 4px;
+  --borderRadiusElement: 6px;
 }
