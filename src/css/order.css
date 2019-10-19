@@ -84,3 +84,7 @@
   color: var(--colorFontAmount);
   margin-top: 1.5rem;
 }
+
+.orderPlaced {
+  display: none;
+}

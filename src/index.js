@@ -9,17 +9,47 @@ const ES6Stuff = () => devineLog('Ik kan ES6 stuff aan', ...arr);
 ES6Stuff();
 
 
+const loadOrders = coffeeClickId => {
+  const $orderState = document.querySelector(`.emptystate`);
+  $orderState.classList.add(`orderPlaced`);
+
+  console.log(coffeeClickId);
+
+  const coffeeArray = data.coffees;
+  //console.log(coffeeArray);
+
+  coffeeArray.forEach (coffeeObject => {
+    if (coffeeObject.id === 5) {
+      console.log(coffeeObject.name);
+    }
+
+  });
+};
+
+const handleOrderClick = e => {
+  //console.log(e.currentTarget.dataset.id);
+  const coffeeClickId = e.currentTarget.dataset.id;
+  loadOrders(coffeeClickId);
+};
+
+const initEventListeners = () => {
+  const $orders = document.querySelectorAll(`.price__button`);
+  $orders.forEach(order =>
+    order.addEventListener(`click`, handleOrderClick));
+};
+
+
 //HTML-structuur aanmaken
 
-const makeHTML = ($pricelist, coffeeName, coffeePrice) => {
+const makeHTML = ($pricelist, coffeeName, coffeePrice, coffeeId) => {
   const $list = document.createElement(`li`);
   $list.classList.add(`price`);
   $pricelist.appendChild($list);
 
-  $pricelist.appendChild($list);
   const $priceButton = document.createElement(`a`);
   $list.appendChild($priceButton);
   $priceButton.classList.add(`price__button`);
+  $priceButton.dataset.id = coffeeId;
 
   const $wrapper = document.createElement(`span`);
   $wrapper.classList.add(`price__button__wrapper`);
@@ -52,12 +82,15 @@ const init = () => {
   const $pricelist = document.querySelector(`.prices__list`);
 
   data.coffees.forEach(coffee => {
-    if (coffee.id < 5) {
+    if (coffee.plantbased === true) {
+      const coffeeId = coffee.id;
       const coffeeName = coffee.name;
       const coffeePrice = coffee.prices.medium;
-      makeHTML($pricelist, coffeeName, coffeePrice);
+      makeHTML($pricelist, coffeeName, coffeePrice, coffeeId);
     }
   });
+
+  initEventListeners();
 };
 
 init();
