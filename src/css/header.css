@@ -1,3 +1,26 @@
 header {
-  background-color: var(--backgroundColor);
+  font-family: var(--fontFamilyHeader);
+  background-color: var(--colorHeader);
+  padding: var(--marginGeneral);
+}
+
+.h1-like {
+  font-size: var(--fontSizeLarge);
+  font-weight: var(--fontWeightFat);
+}
+
+.h2-like {
+  font-size: var(--fontSizeSmall);
+  text-transform: uppercase;
+}
+
+.header__maintitle {
+  display: flex;
+  margin-top: 6px;
+}
+
+.leaf {
+  transform: rotate(10deg);
+  margin-top: 2rem;
+  margin-right: -1.2rem;
 }

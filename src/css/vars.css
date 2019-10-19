@@ -1,8 +1,24 @@
 :root {
-  --backgroundColor: #f9d2cb;
-  --margin: 3rem;
-  --fontFamily: 'Roboto, sans serif';
+  /* All colors */
+  --colorHeader: #f9d2cb;
+  --colorNavigationBar: #212121;
+  --colorSvgNavigation-inactive: #564f4f;
+  --colorSvgNavigation-active: #b7b7b7;
+  --colorAddOrder: #a3f4dc;
+  --colorBackgroundOrder: white;
+
+  /* All margins */
+  --marginGeneral: 3rem;
+  --marginOrder: 1.2rem;
+
+  /* All font-families */
+  --fontFamilyHeader: roboto, sans-serif;
+
+  /* All font-weights */
   --fontWeightFat: 500;
   --fontWeightLight: 400;
+
+  /* All font-sizes */
   --fontSizeSmall: 1.2rem;
+  --fontSizeLarge: 2.6rem;
 }
