@@ -54,5 +54,33 @@
   font-size: var(--fontSizeSmall);
   font-family: var(--fontFamilyHeader);
   text-transform: uppercase;
-  margin: var(--marginGeneral);
+  margin-top: var(--marginGeneral);
+  margin-left: var(--marginGeneral);
+}
+
+.total__label {
+  display: none;
+}
+
+.total__price {
+  display: none;
+}
+
+.emptystate {
+  margin: 7rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &img {
+    display: block;
+  }
+}
+
+.emptystate__content {
+  font-family: var(--fontFamilyHeader);
+  font-size: var(--fontSizeMediumPlus);
+  color: var(--colorFontAmount);
+  margin-top: 1.5rem;
 }
