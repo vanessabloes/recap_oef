@@ -88,3 +88,22 @@
 .orderPlaced {
   display: none;
 }
+
+.order {
+  font-family: var(--fontFamilyHeader);
+  font-size: var(--fontSizeMediumPlus);
+  border-bottom: .1rem solid var(--colorOrderBorder);
+  padding: 1.6rem;
+  margin: 0 var(--marginGeneral);
+  display: flex;
+  justify-content: space-between;
+}
+
+.remove {
+  text-transform: uppercase;
+  color: var(--colorFontAmount);
+}
+
+.removeClick {
+  display: none;
+}

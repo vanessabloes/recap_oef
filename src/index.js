@@ -8,34 +8,102 @@ const arr = [1, 2, 3];
 const ES6Stuff = () => devineLog('Ik kan ES6 stuff aan', ...arr);
 ES6Stuff();
 
+const handleOrderRemove = e => {
+  const target = e.currentTarget;
+  console.log(target);
+
+  const $order = document.querySelector(`.order`);
+  $order.classList.add(`removeClick`);
+  target.classList.add(`removeClick`);
+
+};
+
+const showOrders = (coffeeName, coffeePrice) => {
+  console.log(coffeeName);
+  console.log(coffeePrice);
+
+  const $orders = document.querySelector(`.orders`);
+
+  const $orderlist = document.createElement(`li`);
+  $orderlist.classList.add(`order`);
+  $orders.appendChild($orderlist);
+
+  const $orderName = document.createElement(`span`);
+  $orderName.classList.add(`order__name`);
+  $orderlist.appendChild($orderName);
+  $orderName.textContent = coffeeName;
+
+  const $orderPrice = document.createElement(`span`);
+  $orderPrice.classList.add(`order__price`);
+  $orderlist.appendChild($orderPrice);
+
+  const euro = `\u20ac`;
+  $orderPrice.textContent = `${euro} ${coffeePrice}`;
+
+  const $orderRemove = document.createElement(`button`);
+  $orderRemove.classList.add(`remove`);
+  $orderlist.appendChild($orderRemove);
+  $orderRemove.textContent = `x`;
+
+  $orderRemove.addEventListener(`click`, handleOrderRemove);
+
+};
+
 
 const loadOrders = coffeeClickId => {
   const $orderState = document.querySelector(`.emptystate`);
   $orderState.classList.add(`orderPlaced`);
 
-  console.log(coffeeClickId);
+  //console.log(coffeeClickId);
+  //console.log(typeof (coffeeClickId));
+  const coffeeClickIdNumber = parseInt(coffeeClickId);
 
   const coffeeArray = data.coffees;
   //console.log(coffeeArray);
 
-  coffeeArray.forEach (coffeeObject => {
-    if (coffeeObject.id === 5) {
-      console.log(coffeeObject.name);
+  //let count = 0;
+
+  coffeeArray.forEach(coffeeObject => {
+    if (coffeeObject.id === coffeeClickIdNumber) {
+      //console.log(coffeeObject.name);
+      const orderName = coffeeObject.name;
+      //console.log(coffeeObject.prices.medium);
+      const orderPrice = coffeeObject.prices.medium;
+      //console.log(coffeeClickIdNumber);
+      //console.log(typeof (coffeeClickIdNumber));
+      //count ++;
+      //console.log(count);
+      showOrders(orderName, orderPrice);
     }
 
   });
+
+  /*const clickCounter = {};
+
+  clickCounter[coffeeClickIdNumber] = `test`;
+
+  console.log(clickCounter);*/
+
 };
 
 const handleOrderClick = e => {
   //console.log(e.currentTarget.dataset.id);
   const coffeeClickId = e.currentTarget.dataset.id;
+
+  const clickIds = [];
+  clickIds.push(coffeeClickId);
+  console.log(clickIds);
+
   loadOrders(coffeeClickId);
+
 };
 
 const initEventListeners = () => {
   const $orders = document.querySelectorAll(`.price__button`);
   $orders.forEach(order =>
-    order.addEventListener(`click`, handleOrderClick));
+    order.addEventListener(`click`, handleOrderClick)
+  );
+
 };
 
 
