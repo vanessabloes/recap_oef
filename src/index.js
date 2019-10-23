@@ -8,6 +8,53 @@ const arr = [1, 2, 3];
 const ES6Stuff = () => devineLog('Ik kan ES6 stuff aan', ...arr);
 ES6Stuff();
 
+const countOrders = (order, placedOrderIds) => {
+
+  const placedOrderId = parseInt(order.dataset.id);
+  placedOrderIds.push(placedOrderId);
+  console.log(placedOrderIds);
+
+  const placedOrderOverview = [];
+  const placedOrderCounter = {};
+
+  //const distinctIds = [...new Set(placedOrderIds)];
+  //console.log(distinctIds);
+  let counter1 = 0;
+  let counter2 = 0;
+  //let counter3 = 0;
+  //let counter4 = 0;
+  //let counter5 = 0;
+
+  for (let i = 0;i < placedOrderIds.length;i ++) {
+    console.log(placedOrderIds[i]);
+
+
+    if (placedOrderIds[i] === 1) {
+      counter1 += 1;
+      placedOrderCounter.id = 1;
+      placedOrderCounter.count = counter1;
+    }
+
+    else if (placedOrderIds[i] === 2) {
+      counter2 += 1;
+      placedOrderCounter.id = 2;
+      placedOrderCounter.count = counter2;
+    }
+
+
+
+    placedOrderOverview.push(placedOrderCounter);
+  }
+
+
+
+
+
+
+  console.log(placedOrderOverview);
+
+};
+
 const handleOrderRemove = e => {
   const target = e.currentTarget;
   console.log(target);
@@ -18,15 +65,20 @@ const handleOrderRemove = e => {
 
 };
 
-const showOrders = (coffeeName, coffeePrice) => {
-  console.log(coffeeName);
-  console.log(coffeePrice);
+const showOrders = (coffeeName, coffeePrice, coffeeClickIdNumber) => {
 
   const $orders = document.querySelector(`.orders`);
 
   const $orderlist = document.createElement(`li`);
   $orderlist.classList.add(`order`);
   $orders.appendChild($orderlist);
+  $orderlist.dataset.id = coffeeClickIdNumber;
+
+  const $placedOrders = document.querySelectorAll(`.order`);
+  const placedOrderIds = [];
+  $placedOrders.forEach(placedOrder => {
+    countOrders(placedOrder, placedOrderIds);
+  });
 
   const $orderName = document.createElement(`span`);
   $orderName.classList.add(`order__name`);
@@ -54,45 +106,25 @@ const loadOrders = coffeeClickId => {
   const $orderState = document.querySelector(`.emptystate`);
   $orderState.classList.add(`orderPlaced`);
 
-  //console.log(coffeeClickId);
-  //console.log(typeof (coffeeClickId));
   const coffeeClickIdNumber = parseInt(coffeeClickId);
 
   const coffeeArray = data.coffees;
-  //console.log(coffeeArray);
-
-  //let count = 0;
 
   coffeeArray.forEach(coffeeObject => {
     if (coffeeObject.id === coffeeClickIdNumber) {
-      //console.log(coffeeObject.name);
       const orderName = coffeeObject.name;
-      //console.log(coffeeObject.prices.medium);
       const orderPrice = coffeeObject.prices.medium;
-      //console.log(coffeeClickIdNumber);
-      //console.log(typeof (coffeeClickIdNumber));
-      //count ++;
-      //console.log(count);
-      showOrders(orderName, orderPrice);
+      showOrders(orderName, orderPrice, coffeeClickIdNumber);
     }
 
   });
 
-  /*const clickCounter = {};
-
-  clickCounter[coffeeClickIdNumber] = `test`;
-
-  console.log(clickCounter);*/
 
 };
 
 const handleOrderClick = e => {
   //console.log(e.currentTarget.dataset.id);
   const coffeeClickId = e.currentTarget.dataset.id;
-
-  const clickIds = [];
-  clickIds.push(coffeeClickId);
-  console.log(clickIds);
 
   loadOrders(coffeeClickId);
 
