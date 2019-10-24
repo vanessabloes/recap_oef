@@ -8,54 +8,88 @@ const arr = [1, 2, 3];
 const ES6Stuff = () => devineLog('Ik kan ES6 stuff aan', ...arr);
 ES6Stuff();
 
+const showOrderOverview = overview => {
+  console.log(overview);
+
+  const $orderState = document.querySelector(`.emptystate`);
+  $orderState.classList.add(`orderPlaced`);
+
+
+  overview.forEach(order => {
+    console.log(order);
+
+    /*const $orders = document.querySelector(`.orders`);
+
+    const $orderlist = document.createElement(`li`);
+    $orderlist.classList.add(`order`);
+    $orders.appendChild($orderlist);
+
+    const $orderName = document.createElement(`span`);
+    $orderName.classList.add(`order__name`);
+    $orderlist.appendChild($orderName);
+    $orderName.textContent = order.name;*/
+  });
+};
+
+const makeOrderOverview = overview => {
+
+  for (let a = 0;a < data.coffees.length;a ++) {
+    //console.log(data.coffees[a].id);
+
+    for (let i = 0;i < overview.length;i ++) {
+      //console.log(overview[i].id);
+      if (data.coffees[a].id === overview[i].id) {
+        //console.log(data.coffees[a].name);
+        overview[i].name = data.coffees[a].name;
+        overview[i].price = data.coffees[a].prices.medium;
+      }
+    }
+  }
+
+  showOrderOverview(overview);
+
+};
+
 const countOrders = (order, placedOrderIds) => {
 
   const placedOrderId = parseInt(order.dataset.id);
   placedOrderIds.push(placedOrderId);
-  console.log(placedOrderIds);
+  //console.log(placedOrderIds);
 
   const placedOrderOverview = [];
-  const placedOrderCounter = {};
-
-  //const distinctIds = [...new Set(placedOrderIds)];
-  //console.log(distinctIds);
-  let counter1 = 0;
-  let counter2 = 0;
-  //let counter3 = 0;
-  //let counter4 = 0;
-  //let counter5 = 0;
+  const copy = placedOrderIds.slice(0);
 
   for (let i = 0;i < placedOrderIds.length;i ++) {
-    console.log(placedOrderIds[i]);
+    //console.log(placedOrderIds[i]);
+    let counter = 0;
 
+    for (let k = 0;k < copy.length;k ++) {
 
-    if (placedOrderIds[i] === 1) {
-      counter1 += 1;
-      placedOrderCounter.id = 1;
-      placedOrderCounter.count = counter1;
+      if (placedOrderIds[i] === copy[k]) {
+        //console.log(`match`);
+        counter ++;
+        delete copy[k];
+      } else {
+        //console.log(`no match`);
+      }
     }
 
-    else if (placedOrderIds[i] === 2) {
-      counter2 += 1;
-      placedOrderCounter.id = 2;
-      placedOrderCounter.count = counter2;
+    if (counter > 0) {
+      const coffee = {};
+      coffee.id = placedOrderIds[i];
+      coffee.count = counter;
+      placedOrderOverview.push(coffee);
     }
 
 
 
-    placedOrderOverview.push(placedOrderCounter);
+    makeOrderOverview(placedOrderOverview);
   }
 
 
-
-
-
-
-  console.log(placedOrderOverview);
-
 };
 
-const handleOrderRemove = e => {
+/*const handleOrderRemove = e => {
   const target = e.currentTarget;
   console.log(target);
 
@@ -63,24 +97,24 @@ const handleOrderRemove = e => {
   $order.classList.add(`removeClick`);
   target.classList.add(`removeClick`);
 
-};
+};*/
 
-const showOrders = (coffeeName, coffeePrice, coffeeClickIdNumber) => {
+const showOrders = coffeeClickIdNumber => {
 
   const $orders = document.querySelector(`.orders`);
 
   const $orderlist = document.createElement(`li`);
-  $orderlist.classList.add(`order`);
+  $orderlist.classList.add(`order-inactive`);
   $orders.appendChild($orderlist);
   $orderlist.dataset.id = coffeeClickIdNumber;
 
-  const $placedOrders = document.querySelectorAll(`.order`);
+  const $placedOrders = document.querySelectorAll(`.order-inactive`);
   const placedOrderIds = [];
   $placedOrders.forEach(placedOrder => {
     countOrders(placedOrder, placedOrderIds);
   });
 
-  const $orderName = document.createElement(`span`);
+  /*const $orderName = document.createElement(`span`);
   $orderName.classList.add(`order__name`);
   $orderlist.appendChild($orderName);
   $orderName.textContent = coffeeName;
@@ -97,36 +131,33 @@ const showOrders = (coffeeName, coffeePrice, coffeeClickIdNumber) => {
   $orderlist.appendChild($orderRemove);
   $orderRemove.textContent = `x`;
 
-  $orderRemove.addEventListener(`click`, handleOrderRemove);
-
-};
-
-
-const loadOrders = coffeeClickId => {
-  const $orderState = document.querySelector(`.emptystate`);
-  $orderState.classList.add(`orderPlaced`);
-
-  const coffeeClickIdNumber = parseInt(coffeeClickId);
-
-  const coffeeArray = data.coffees;
-
-  coffeeArray.forEach(coffeeObject => {
-    if (coffeeObject.id === coffeeClickIdNumber) {
-      const orderName = coffeeObject.name;
-      const orderPrice = coffeeObject.prices.medium;
-      showOrders(orderName, orderPrice, coffeeClickIdNumber);
-    }
-
-  });
-
+  $orderRemove.addEventListener(`click`, handleOrderRemove);*/
 
 };
 
 const handleOrderClick = e => {
-  //console.log(e.currentTarget.dataset.id);
-  const coffeeClickId = e.currentTarget.dataset.id;
 
-  loadOrders(coffeeClickId);
+  //console.log(e.currentTarget.dataset.id);
+
+  const coffeeClickId = e.currentTarget.dataset.id;
+  const coffeeClickAmount = e.currentTarget.dataset.amount;
+
+  const coffeeClickIdNumber = parseInt(coffeeClickId);
+  const coffeeClickAmountNumber = parseInt(coffeeClickAmount);
+
+  console.log(coffeeClickAmountNumber);
+
+  const placedOrderIds = [];
+  placedOrderIds.push(coffeeClickIdNumber);
+  console.log(placedOrderIds);
+
+  data.coffees.forEach(coffeeObject => {
+    if (coffeeObject.id === coffeeClickIdNumber) {
+      showOrders(coffeeClickIdNumber);
+    }
+
+  });
+
 
 };
 
@@ -150,6 +181,7 @@ const makeHTML = ($pricelist, coffeeName, coffeePrice, coffeeId) => {
   $list.appendChild($priceButton);
   $priceButton.classList.add(`price__button`);
   $priceButton.dataset.id = coffeeId;
+  $priceButton.dataset.amount = 0;
 
   const $wrapper = document.createElement(`span`);
   $wrapper.classList.add(`price__button__wrapper`);
