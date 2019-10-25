@@ -1,110 +1,6 @@
 import './style.css';
 import data from './assets/data/coffees.json';
 
-/*const showOrderOverview = overview => {
-  console.log(overview);
-
-  const $orderState = document.querySelector(`.emptystate`);
-  $orderState.classList.add(`orderPlaced`);
-
-
-  overview.forEach(order => {
-    console.log(order);
-
-    /*const $orders = document.querySelector(`.orders`);
-
-    const $orderlist = document.createElement(`li`);
-    $orderlist.classList.add(`order`);
-    $orders.appendChild($orderlist);
-
-    const $orderName = document.createElement(`span`);
-    $orderName.classList.add(`order__name`);
-    $orderlist.appendChild($orderName);
-    $orderName.textContent = order.name;*/
-/*});
-};
-
-const makeOrderOverview = overview => {
-
-  for (let a = 0;a < data.coffees.length;a ++) {
-    //console.log(data.coffees[a].id);
-
-    for (let i = 0;i < overview.length;i ++) {
-      //console.log(overview[i].id);
-      if (data.coffees[a].id === overview[i].id) {
-        //console.log(data.coffees[a].name);
-        overview[i].name = data.coffees[a].name;
-        overview[i].price = data.coffees[a].prices.medium;
-      }
-    }
-  }
-
-  showOrderOverview(overview);
-
-};
-
-
-/*const handleOrderRemove = e => {
-  const target = e.currentTarget;
-  console.log(target);
-
-  const $order = document.querySelector(`.order`);
-  $order.classList.add(`removeClick`);
-  target.classList.add(`removeClick`);
-
-};*/
-
-/*const showOrders = coffeeClickIdNumber => {
-
-  const $orders = document.querySelector(`.orders`);
-
-  const $orderlist = document.createElement(`li`);
-  $orderlist.classList.add(`order-inactive`);
-  $orders.appendChild($orderlist);
-  $orderlist.dataset.id = coffeeClickIdNumber;
-
-  const $placedOrders = document.querySelectorAll(`.order-inactive`);
-  const placedOrderIds = [];
-  $placedOrders.forEach(placedOrder => {
-    countOrders(placedOrder, placedOrderIds);
-  });
-
-  /*const $orderName = document.createElement(`span`);
-  $orderName.classList.add(`order__name`);
-  $orderlist.appendChild($orderName);
-  $orderName.textContent = coffeeName;
-
-  const $orderPrice = document.createElement(`span`);
-  $orderPrice.classList.add(`order__price`);
-  $orderlist.appendChild($orderPrice);
-
-  const euro = `\u20ac`;
-  $orderPrice.textContent = `${euro} ${coffeePrice}`;
-
-  const $orderRemove = document.createElement(`button`);
-  $orderRemove.classList.add(`remove`);
-  $orderlist.appendChild($orderRemove);
-  $orderRemove.textContent = `x`;
-
-  $orderRemove.addEventListener(`click`, handleOrderRemove);
-
-   if (overview[v].id === ))
-    if (overview[v].count === 1) {
-      document.querySelector(`.orders`).innerHTML += `<li class="order" data-id="${overview[v].id}">
-                    <span class="order__name">
-                      <span class="order__amount">${overview[v].count}x</span>${overview[v].name}
-                    </span>
-                    <span class="order__price">&euro;${overview[v].price}</span>
-                    <button class="remove">
-                      x
-                    </button>
-                  </li>`;
-    } else if (overview[v].count >= 2) {
-      document.querySelector(`.order__amount`).textContent = `${overview[v].count}x`;
-    }
-
-};*/
-
 const showOverview = overview => {
   //console.log(overview);
 
@@ -154,61 +50,7 @@ const showOverview = overview => {
       </button>
       </li>`;
 
-
-
-
-
   });
-
-
-
-
-  /*
-    if (order.count < 2) {
-
-      //maak html structuur bij order aan
-      const $orderState = document.querySelector(`.emptystate`);
-      $orderState.classList.add(`orderPlaced`);
-
-      const $order = document.createElement(`li`);
-      $order.classList.add(`order`);
-      $orderoverview.appendChild($order);
-      $order.dataset.click = 'alreadyClickedOnce';
-
-      const $orderCount = document.createElement(`span`);
-      $orderCount.classList.add(`order__count`);
-      $order.appendChild($orderCount);
-      $orderCount.textContent = order.count;
-
-      const $orderName = document.createElement(`span`);
-      $orderName.classList.add(`order__name`);
-      $order.appendChild($orderName);
-      $orderName.textContent = order.name;
-
-      const $orderPrice = document.createElement(`span`);
-      $orderPrice.classList.add(`order__price`);
-      $order.appendChild($orderPrice);
-      $orderPrice.textContent = order.price;
-
-      const $orderRemove = document.createElement(`button`);
-      $orderRemove.classList.add(`remove`);
-      $order.appendChild($orderRemove);
-      $orderRemove.textContent = `x`;
-
-    } else {
-      const $orders = document.querySelectorAll(`.order`);
-      $orders.forEach($order => {
-        console.log(parseInt($order.dataset.order));
-        if (parseInt($order.dataset.order) === order.id) {
-          const $orderCount = document.querySelector(`.order__count`);
-          $orderCount.textContent = order.count;
-        }
-      });
-
-
-
-    }*/
-
 
 };
 
@@ -343,9 +185,6 @@ const init = () => {
   //document.querySelector(`.orders`).classList.add(`visually-hidden`);
 
   initEventListeners();
-
-
-
 
 
 };
