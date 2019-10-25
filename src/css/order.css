@@ -107,3 +107,10 @@
 .removeClick {
   display: none;
 }
+
+.orders {
+
+  & .visually-hidden {
+    display: none;
+  }
+}

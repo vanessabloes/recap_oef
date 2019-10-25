@@ -88,6 +88,21 @@ const makeOrderOverview = overview => {
 
   $orderRemove.addEventListener(`click`, handleOrderRemove);
 
+   if (overview[v].id === ))
+    if (overview[v].count === 1) {
+      document.querySelector(`.orders`).innerHTML += `<li class="order" data-id="${overview[v].id}">
+                    <span class="order__name">
+                      <span class="order__amount">${overview[v].count}x</span>${overview[v].name}
+                    </span>
+                    <span class="order__price">&euro;${overview[v].price}</span>
+                    <button class="remove">
+                      x
+                    </button>
+                  </li>`;
+    } else if (overview[v].count >= 2) {
+      document.querySelector(`.order__amount`).textContent = `${overview[v].count}x`;
+    }
+
 };*/
 
 const showOverview = overview => {
@@ -107,22 +122,48 @@ const showOverview = overview => {
   }
 
   console.log(overview);
-  const array = [];
-  console.log(array);
+
 
   overview.forEach(order => {
 
-    const $order = document.querySelector(`.order`);
+    const $madeOrders = document.querySelectorAll(`.order`);
+
     console.log(order);
-    console.log(order.id);
-    console.log(order.count);
-    console.log($order);
+    const madeOrdersArray = [];
 
-    array.push(order.id);
-    console.log(array);
+    $madeOrders.forEach(madeOrder => {
+      //console.log(madeOrder.dataset.id);
+
+      madeOrdersArray.push(parseInt(madeOrder.dataset.id));
+
+    });
+
+    console.log(madeOrdersArray);
+    //const uniqueMadeOrders = madeOrdersArray.unique();
+    //console.log(uniqueMadeOrders);
 
 
-    /*
+
+    document.querySelector(`.orders`).innerHTML += `<li class="order" data-id="${order.id}">
+      <span class="order__name">
+        <span class="order__amount">${order.count}x</span>${order.name}
+      </span>
+      <span class="order__price">&euro;${order.price}</span>
+      <button class="remove">
+        x
+      </button>
+      </li>`;
+
+
+
+
+
+  });
+
+
+
+
+  /*
     if (order.count < 2) {
 
       //maak html structuur bij order aan
@@ -168,7 +209,7 @@ const showOverview = overview => {
 
     }*/
 
-  });
+
 };
 
 const countClicks = (placedOrderIds, coffeeClickId) => {
@@ -181,6 +222,7 @@ const countClicks = (placedOrderIds, coffeeClickId) => {
       $orderlist.classList.add(`order-inactive`);
       $orders.appendChild($orderlist);
       $orderlist.dataset.orderId = coffeeClickId;
+      $orderlist.dataset.click = `clicked`;
 
       const $placedOrders = document.querySelectorAll(`.order-inactive`);
 
@@ -231,6 +273,11 @@ const handleOrderClick = e => {
 
   const placedOrderIds = [];
   countClicks(placedOrderIds, coffeeClickId);
+
+  const $orderState = document.querySelector(`.emptystate`);
+  $orderState.classList.add(`orderPlaced`);
+
+
 
 };
 
@@ -293,7 +340,14 @@ const init = () => {
     }
   });
 
+  //document.querySelector(`.orders`).classList.add(`visually-hidden`);
+
   initEventListeners();
+
+
+
+
+
 };
 
 init();
