@@ -8,6 +8,7 @@ module.exports = (env, {mode}) => {
   console.log(mode);
   return {
     output: {
+      path: require('path').resolve(__dirname, 'public'),
       filename: '[name].[hash].js'
     },
     devServer: {
